@@ -254,11 +254,11 @@ export function QuoteForm({ className }: QuoteFormProps) {
         ) : null}
       </div>
 
-      <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="sm:col-span-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="focus-ring inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900 disabled:cursor-not-allowed disabled:bg-brand-500"
+          className="focus-ring inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-brand-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900 disabled:cursor-not-allowed disabled:bg-brand-500 md:w-auto"
         >
           {status === "submitting" ? "Отправка…" : "Запросить коммерческое предложение"}
         </button>

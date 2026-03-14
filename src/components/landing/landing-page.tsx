@@ -100,7 +100,7 @@ function CardGrid({
 export function LandingPage() {
   return (
     <div className="reveal-in">
-      <header className="sticky top-0 z-40 border-b border-slate-300 bg-white/95 pt-[max(env(safe-area-inset-top),0px)] shadow-[0_10px_28px_-24px_rgba(18,29,45,0.9)] backdrop-blur">
+      <header className="relative z-40 border-b border-slate-300 bg-white/95 pt-[max(env(safe-area-inset-top),0px)] shadow-[0_10px_28px_-24px_rgba(18,29,45,0.9)] backdrop-blur lg:sticky lg:top-0">
         <div className="container-main">
           <div className="flex flex-col gap-4 py-4">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -113,24 +113,24 @@ export function LandingPage() {
                   ремонта.
                 </p>
               </div>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="grid w-full gap-2 sm:w-auto sm:grid-cols-2 lg:flex lg:flex-wrap lg:items-center lg:gap-3">
                 <a
                   href={`tel:${contacts.phone.replace(/\s/g, "")}`}
-                  className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700"
+                  className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700 sm:justify-start"
                 >
                   <FontAwesomeIcon icon={faPhone} {...iconDecorativeProps} />
                   {contacts.phone}
                 </a>
                 <a
                   href={`mailto:${contacts.email}`}
-                  className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700"
+                  className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700 sm:justify-start"
                 >
                   <FontAwesomeIcon icon={faEnvelope} {...iconDecorativeProps} />
                   {contacts.email}
                 </a>
                 <Link
                   href="#quote"
-                  className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md bg-brand-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900"
+                  className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-brand-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900 sm:col-span-2 lg:col-span-1"
                 >
                   Оставить заявку
                   <FontAwesomeIcon
@@ -169,7 +169,7 @@ export function LandingPage() {
               <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-700">
                 Материалы для сложных объектов
               </p>
-              <h1 className="mt-3 text-balance font-[var(--font-heading)] text-3xl font-semibold leading-tight text-brand-950 sm:text-4xl lg:text-5xl">
+              <h1 className="mt-3 text-balance font-[var(--font-heading)] text-[clamp(2.25rem,8vw,4rem)] font-semibold leading-[1.05] text-brand-950">
                 Комплексные поставки материалов для реставрации и капитального
                 ремонта
               </h1>
@@ -212,7 +212,7 @@ export function LandingPage() {
                   Смотреть категории материалов
                 </Link>
               </div>
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 md:grid-cols-3">
                 <article className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3">
                   <p className="text-2xl font-bold leading-none text-brand-900">
                     {productCategories.length}
@@ -394,7 +394,7 @@ export function LandingPage() {
                 <li
                   key={industry}
                   className={`rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-5 shadow-panel ${
-                    index === industries.length - 1 ? "lg:col-span-2" : ""
+                    index === industries.length - 1 ? "sm:col-span-2 lg:col-span-2" : ""
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -475,7 +475,7 @@ export function LandingPage() {
         </section>
 
         <section id="quote" className="section-shell">
-          <div className="container-main grid items-stretch gap-5 lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="container-main grid items-stretch gap-5 md:grid-cols-[0.88fr_1.12fr]">
             <aside className="relative flex h-full flex-col overflow-hidden rounded-xl border border-brand-900 bg-brand-950 p-6 text-slate-100 shadow-panel sm:p-7">
               <div
                 aria-hidden="true"
@@ -552,7 +552,7 @@ export function LandingPage() {
       </main>
 
       <footer className="border-t border-slate-300 bg-brand-950 py-10 text-slate-200">
-        <div className="container-main grid gap-8 lg:grid-cols-[1.2fr_0.9fr_1fr]">
+        <div className="container-main grid gap-8 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_1fr]">
           <div>
             <p className="font-[var(--font-heading)] text-2xl font-semibold text-white">
               {companyName}

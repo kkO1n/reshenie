@@ -32,6 +32,38 @@ import { QuoteForm } from "./quote-form";
 import { SectionTitle } from "./section-title";
 
 const iconDecorativeProps = { "aria-hidden": true } as const;
+const industryNotes: Record<string, string> = {
+  "Жилые дома":
+    "Комплектация текущих и капитальных работ с учетом этапности поставок.",
+  "Объекты культурного наследия":
+    "Материалы и решения, согласованные с реставрационными требованиями.",
+  Памятники:
+    "Поддержка при подборе составов и узлов для деликатного восстановления.",
+  "Станции метро":
+    "Организация поставок для инфраструктурных объектов с жесткими сроками.",
+  "Объекты капитального ремонта":
+    "Комплексная поставка по ведомостям и контроль движения до объекта.",
+};
+const heroHighlights = [
+  "Глубокая экспертиза рынка реставрационных материалов",
+  "Широкий ассортимент под проектные требования",
+  "Техническое сопровождение и проработка узлов",
+  "Надежная логистика и контроль поставки",
+];
+const quoteSupportItems = [
+  {
+    icon: faWrench,
+    text: "Подбор материалов под проектные требования",
+  },
+  {
+    icon: faTruckFast,
+    text: "Планирование поставки и контроль логистики",
+  },
+  {
+    icon: faClipboardCheck,
+    text: "Сопровождение менеджера и технического специалиста",
+  },
+];
 
 function CardGrid({
   items,
@@ -51,7 +83,7 @@ function CardGrid({
       {items.map((item) => (
         <article
           key={item.title}
-          className="min-w-0 rounded-xl border border-slate-300 bg-white p-5 shadow-panel"
+          className="min-w-0 rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-5 shadow-panel transition-transform motion-safe:hover:-translate-y-0.5"
         >
           <h3 className="font-[var(--font-heading)] text-xl font-semibold leading-snug text-brand-900">
             {item.title}
@@ -67,8 +99,8 @@ function CardGrid({
 
 export function LandingPage() {
   return (
-    <div className="reveal-in bg-slate-50">
-      <header className="sticky top-0 z-40 border-b border-slate-300 bg-white/95 pt-[max(env(safe-area-inset-top),0px)] backdrop-blur">
+    <div className="reveal-in">
+      <header className="sticky top-0 z-40 border-b border-slate-300 bg-white/95 pt-[max(env(safe-area-inset-top),0px)] shadow-[0_10px_28px_-24px_rgba(18,29,45,0.9)] backdrop-blur">
         <div className="container-main">
           <div className="flex flex-col gap-4 py-4">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -147,6 +179,21 @@ export function LandingPage() {
                 ассортимент, техническое сопровождение и надежную логистику до
                 объекта.
               </p>
+              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                {heroHighlights.map((item) => (
+                  <li
+                    key={item}
+                    className="flex min-w-0 items-start gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800"
+                  >
+                    <FontAwesomeIcon
+                      icon={faCircleCheck}
+                      className="mt-0.5 text-brand-700"
+                      {...iconDecorativeProps}
+                    />
+                    <span className="break-words">{item}</span>
+                  </li>
+                ))}
+              </ul>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="#quote"
@@ -165,6 +212,32 @@ export function LandingPage() {
                   Смотреть категории материалов
                 </Link>
               </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                <article className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3">
+                  <p className="text-2xl font-bold leading-none text-brand-900">
+                    {productCategories.length}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-brand-800">
+                    Категорий материалов
+                  </p>
+                </article>
+                <article className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3">
+                  <p className="text-2xl font-bold leading-none text-brand-900">
+                    {workflowSteps.length}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-brand-800">
+                    Этапов контроля поставки
+                  </p>
+                </article>
+                <article className="rounded-lg border border-accent-200 bg-accent-50 px-4 py-3">
+                  <p className="text-2xl font-bold leading-none text-accent-800">
+                    B2B
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-accent-800">
+                    Работаем с подрядчиками
+                  </p>
+                </article>
+              </div>
             </div>
 
             <figure className="overflow-hidden rounded-xl border border-slate-300 bg-slate-100 shadow-panel">
@@ -177,6 +250,10 @@ export function LandingPage() {
                 sizes="(max-width: 1024px) 100vw, 44vw"
                 className="h-full w-full object-cover"
               />
+              <figcaption className="border-t border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-700">
+                Поставка материалов под реставрацию, капитальный ремонт и
+                инфраструктурные объекты.
+              </figcaption>
             </figure>
           </div>
         </section>
@@ -197,7 +274,7 @@ export function LandingPage() {
               ].map((point) => (
                 <div
                   key={point}
-                  className="min-w-0 rounded-xl border border-slate-300 bg-white p-4 shadow-panel"
+                  className="min-w-0 rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-4 shadow-panel"
                 >
                   <p className="flex items-center gap-3 break-words text-sm leading-relaxed text-slate-800">
                     <FontAwesomeIcon
@@ -259,7 +336,7 @@ export function LandingPage() {
                 return (
                   <article
                     key={item.title}
-                    className="min-w-0 rounded-xl border border-slate-300 bg-white p-5 shadow-panel"
+                    className="min-w-0 rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-5 shadow-panel"
                   >
                     <h3 className="flex items-center gap-3 font-[var(--font-heading)] text-xl font-semibold leading-snug text-brand-900">
                       <FontAwesomeIcon
@@ -289,10 +366,10 @@ export function LandingPage() {
               {workflowSteps.map((step, index) => (
                 <li
                   key={step}
-                  className="flex min-w-0 items-center gap-3 rounded-xl border border-slate-300 bg-white p-4 shadow-panel"
+                  className="flex min-w-0 items-center gap-3 rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-4 shadow-panel"
                 >
                   <span
-                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-900"
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-300 bg-brand-100 text-sm font-semibold text-brand-900"
                     aria-hidden="true"
                   >
                     {index + 1}
@@ -316,11 +393,31 @@ export function LandingPage() {
               {industries.map((industry, index) => (
                 <li
                   key={industry}
-                  className={`flex min-w-0 items-center gap-2 rounded-lg border border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-brand-900 ${
+                  className={`rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-5 shadow-panel ${
                     index === industries.length - 1 ? "lg:col-span-2" : ""
                   }`}
                 >
-                  <span className="break-words">{industry}</span>
+                  <div className="flex items-start gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand-300 bg-brand-100 text-sm font-semibold text-brand-900"
+                    >
+                      {index + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="flex items-center gap-2 font-[var(--font-heading)] text-lg font-semibold text-brand-900">
+                        <FontAwesomeIcon
+                          icon={faChevronRight}
+                          className="text-brand-700"
+                          {...iconDecorativeProps}
+                        />
+                        <span className="break-words">{industry}</span>
+                      </h3>
+                      <p className="mt-2 break-words text-sm leading-relaxed text-slate-700">
+                        {industryNotes[industry]}
+                      </p>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -338,7 +435,7 @@ export function LandingPage() {
               {imageDirections.map((item) => (
                 <article
                   key={item.title}
-                  className="overflow-hidden rounded-xl border border-slate-300 bg-white shadow-panel"
+                  className="overflow-hidden rounded-xl border border-slate-300 bg-gradient-to-b from-white to-slate-50 shadow-panel"
                 >
                   <Image
                     src={item.src}
@@ -378,8 +475,12 @@ export function LandingPage() {
         </section>
 
         <section id="quote" className="section-shell">
-          <div className="container-main flex flex-col gap-5">
-            <aside className="flex h-full flex-col rounded-xl border border-slate-300 bg-brand-950 p-6 text-slate-100 shadow-panel">
+          <div className="container-main grid items-stretch gap-5 lg:grid-cols-[0.88fr_1.12fr]">
+            <aside className="relative flex h-full flex-col overflow-hidden rounded-xl border border-brand-900 bg-brand-950 p-6 text-slate-100 shadow-panel sm:p-7">
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-1 bg-accent-500"
+              />
               <h2 className="font-[var(--font-heading)] text-2xl font-semibold text-white">
                 Запросить коммерческое предложение
               </h2>
@@ -387,8 +488,24 @@ export function LandingPage() {
                 Отправьте заявку, и мы подготовим подбор материалов под ваш
                 объект, сроки поставки и требуемые объемы.
               </p>
+              <ul className="mt-6 space-y-4">
+                {quoteSupportItems.map((item) => (
+                  <li key={item.text} className="flex items-start gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-800 text-accent-200">
+                      <FontAwesomeIcon icon={item.icon} {...iconDecorativeProps} />
+                    </span>
+                    <p className="pt-1 text-sm font-medium leading-relaxed text-slate-100">
+                      {item.text}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-auto pt-6 text-sm leading-relaxed text-slate-300">
+                Работаем в связке с подрядчиком, закупкой и техспециалистами
+                объекта до закрытия поставки.
+              </p>
             </aside>
-            <QuoteForm className="h-full" />
+            <QuoteForm className="h-full self-stretch" />
           </div>
         </section>
 
@@ -435,38 +552,68 @@ export function LandingPage() {
       </main>
 
       <footer className="border-t border-slate-300 bg-brand-950 py-10 text-slate-200">
-        <div className="container-main">
-          <p className="font-[var(--font-heading)] text-lg font-semibold text-white">
-            Связь
-          </p>
-          <ul className="text-sm text-slate-300">
-            <li>
-              Телефон:{" "}
-              <a
-                href={`tel:${contacts.phone.replace(/\s/g, "")}`}
-                className="focus-ring inline-flex items-center transition-colors hover:text-white"
-              >
-                {contacts.phone}
-              </a>
-            </li>
-            <li>
-              Email:{" "}
-              <a
-                href={`mailto:${contacts.email}`}
-                className="focus-ring inline-flex items-center break-all transition-colors hover:text-white"
-              >
-                {contacts.email}
-              </a>
-            </li>
-            <li>Контактное лицо: {contacts.person}</li>
-          </ul>
-          <Link
-            href="#quote"
-            className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-500 active:bg-accent-700"
-          >
-            Получить подбор материалов
-            <FontAwesomeIcon icon={faArrowRight} {...iconDecorativeProps} />
-          </Link>
+        <div className="container-main grid gap-8 lg:grid-cols-[1.2fr_0.9fr_1fr]">
+          <div>
+            <p className="font-[var(--font-heading)] text-2xl font-semibold text-white">
+              {companyName}
+            </p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-300">
+              Комплексные поставки материалов для реставрации и капитального
+              ремонта с технической поддержкой и контролем логистики.
+            </p>
+          </div>
+
+          <nav aria-label="Навигация в подвале">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+              Разделы
+            </p>
+            <ul className="mt-3 space-y-2">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="focus-ring inline-flex text-sm text-slate-300 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+              Контакты
+            </p>
+            <ul className="mt-3 space-y-2 text-sm text-slate-300">
+              <li>
+                Телефон:{" "}
+                <a
+                  href={`tel:${contacts.phone.replace(/\s/g, "")}`}
+                  className="focus-ring inline-flex items-center transition-colors hover:text-white"
+                >
+                  {contacts.phone}
+                </a>
+              </li>
+              <li>
+                Email:{" "}
+                <a
+                  href={`mailto:${contacts.email}`}
+                  className="focus-ring inline-flex items-center break-all transition-colors hover:text-white"
+                >
+                  {contacts.email}
+                </a>
+              </li>
+              <li>Контактное лицо: {contacts.person}</li>
+            </ul>
+            <Link
+              href="#quote"
+              className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-500 active:bg-accent-700"
+            >
+              Получить подбор материалов
+              <FontAwesomeIcon icon={faArrowRight} {...iconDecorativeProps} />
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

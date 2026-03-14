@@ -13,7 +13,7 @@ import {
   faPhone,
   faShieldHalved,
   faTruckFast,
-  faWrench
+  faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -26,14 +26,18 @@ import {
   productCategories,
   serviceItems,
   trustPoints,
-  workflowSteps
+  workflowSteps,
 } from "./data";
 import { QuoteForm } from "./quote-form";
 import { SectionTitle } from "./section-title";
 
 const iconDecorativeProps = { "aria-hidden": true } as const;
 
-function CardGrid({ items }: { items: Array<{ title: string; description: string }> }) {
+function CardGrid({
+  items,
+}: {
+  items: Array<{ title: string; description: string }>;
+}) {
   if (items.length === 0) {
     return (
       <p className="rounded-lg border border-slate-300 bg-slate-100 p-4 text-slate-700">
@@ -52,7 +56,9 @@ function CardGrid({ items }: { items: Array<{ title: string; description: string
           <h3 className="font-[var(--font-heading)] text-xl font-semibold leading-snug text-brand-900">
             {item.title}
           </h3>
-          <p className="mt-2 break-words text-sm leading-relaxed text-slate-700">{item.description}</p>
+          <p className="mt-2 break-words text-sm leading-relaxed text-slate-700">
+            {item.description}
+          </p>
         </article>
       ))}
     </div>
@@ -71,30 +77,34 @@ export function LandingPage() {
                   {companyName}
                 </p>
                 <p className="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">
-                  Комплексная поставка материалов для реставрации и капитального ремонта.
+                  Комплексная поставка материалов для реставрации и капитального
+                  ремонта.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href={`tel:${contacts.phone.replace(/\s/g, "")}`}
-                  className="focus-ring inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700"
+                  className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700"
                 >
                   <FontAwesomeIcon icon={faPhone} {...iconDecorativeProps} />
                   {contacts.phone}
                 </a>
                 <a
                   href={`mailto:${contacts.email}`}
-                  className="focus-ring inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700"
+                  className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 transition-colors hover:border-brand-500 hover:text-brand-900 active:border-brand-700"
                 >
                   <FontAwesomeIcon icon={faEnvelope} {...iconDecorativeProps} />
                   {contacts.email}
                 </a>
                 <Link
                   href="#quote"
-                  className="focus-ring inline-flex items-center gap-2 rounded-md bg-brand-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900"
+                  className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md bg-brand-800 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900"
                 >
                   Оставить заявку
-                  <FontAwesomeIcon icon={faArrowRight} {...iconDecorativeProps} />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    {...iconDecorativeProps}
+                  />
                 </Link>
               </div>
             </div>
@@ -105,7 +115,7 @@ export function LandingPage() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="focus-ring inline-flex rounded-md border border-transparent px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-100 hover:text-brand-900 active:bg-slate-200"
+                      className="focus-ring inline-flex min-h-11 items-center whitespace-nowrap rounded-md border border-transparent px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-100 hover:text-brand-900 active:bg-slate-200"
                     >
                       {item.label}
                     </Link>
@@ -118,19 +128,24 @@ export function LandingPage() {
       </header>
 
       <main id="main-content">
-        <section id="hero" className="section-shell border-b border-slate-300 bg-white">
+        <section
+          id="hero"
+          className="section-shell border-b border-slate-300 bg-white"
+        >
           <div className="container-main grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-700">
                 Материалы для сложных объектов
               </p>
               <h1 className="mt-3 text-balance font-[var(--font-heading)] text-3xl font-semibold leading-tight text-brand-950 sm:text-4xl lg:text-5xl">
-                Комплексные поставки материалов для реставрации и капитального ремонта
+                Комплексные поставки материалов для реставрации и капитального
+                ремонта
               </h1>
               <p className="mt-4 max-w-2xl break-words text-base leading-relaxed text-slate-700 sm:text-lg">
-                Экспертно подбираем материалы для объектов разной сложности: от жилых домов до
-                станций метро и памятников. Обеспечиваем широкий ассортимент, техническое
-                сопровождение и надежную логистику до объекта.
+                Экспертно подбираем материалы для объектов разной сложности: от
+                жилых домов до станций метро и памятников. Обеспечиваем широкий
+                ассортимент, техническое сопровождение и надежную логистику до
+                объекта.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
@@ -138,7 +153,10 @@ export function LandingPage() {
                   className="focus-ring inline-flex items-center gap-2 rounded-lg bg-brand-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900"
                 >
                   Получить консультацию
-                  <FontAwesomeIcon icon={faArrowRight} {...iconDecorativeProps} />
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    {...iconDecorativeProps}
+                  />
                 </Link>
                 <Link
                   href="#categories"
@@ -156,6 +174,7 @@ export function LandingPage() {
                 width={960}
                 height={720}
                 priority
+                sizes="(max-width: 1024px) 100vw, 44vw"
                 className="h-full w-full object-cover"
               />
             </figure>
@@ -174,13 +193,13 @@ export function LandingPage() {
                 "Поддержка по технологическим картам",
                 "Сопровождение проектирования узлов и деталей",
                 "Техническое сопровождение применения материалов",
-                "Взаимодействие с техническими отделами производителей"
+                "Взаимодействие с техническими отделами производителей",
               ].map((point) => (
                 <div
                   key={point}
                   className="min-w-0 rounded-xl border border-slate-300 bg-white p-4 shadow-panel"
                 >
-                  <p className="flex items-start gap-3 break-words text-sm leading-relaxed text-slate-800">
+                  <p className="flex items-center gap-3 break-words text-sm leading-relaxed text-slate-800">
                     <FontAwesomeIcon
                       icon={faCircleCheck}
                       className="mt-0.5 text-brand-700"
@@ -218,7 +237,10 @@ export function LandingPage() {
 
         <section id="advantages" className="section-shell bg-white">
           <div className="container-main">
-            <SectionTitle kicker="Преимущества" title="Почему подрядчики выбирают ООО «РЕШЕНИЕ»" />
+            <SectionTitle
+              kicker="Преимущества"
+              title="Почему подрядчики выбирают ООО «РЕШЕНИЕ»"
+            />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {advantages.map((item, idx) => {
                 const icon =
@@ -240,7 +262,11 @@ export function LandingPage() {
                     className="min-w-0 rounded-xl border border-slate-300 bg-white p-5 shadow-panel"
                   >
                     <h3 className="flex items-center gap-3 font-[var(--font-heading)] text-xl font-semibold leading-snug text-brand-900">
-                      <FontAwesomeIcon icon={icon} className="text-brand-700" {...iconDecorativeProps} />
+                      <FontAwesomeIcon
+                        icon={icon}
+                        className="text-brand-700"
+                        {...iconDecorativeProps}
+                      />
                       <span>{item.title}</span>
                     </h3>
                     <p className="mt-2 break-words text-sm leading-relaxed text-slate-700">
@@ -263,7 +289,7 @@ export function LandingPage() {
               {workflowSteps.map((step, index) => (
                 <li
                   key={step}
-                  className="flex min-w-0 items-start gap-3 rounded-xl border border-slate-300 bg-white p-4 shadow-panel"
+                  className="flex min-w-0 items-center gap-3 rounded-xl border border-slate-300 bg-white p-4 shadow-panel"
                 >
                   <span
                     className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-900"
@@ -271,7 +297,9 @@ export function LandingPage() {
                   >
                     {index + 1}
                   </span>
-                  <p className="break-words text-sm font-medium leading-relaxed text-slate-800">{step}</p>
+                  <p className="break-words text-sm font-medium leading-relaxed text-slate-800">
+                    {step}
+                  </p>
                 </li>
               ))}
             </ol>
@@ -285,12 +313,13 @@ export function LandingPage() {
               title="Опыт поставок для разных отраслей и уровней сложности"
             />
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {industries.map((industry) => (
+              {industries.map((industry, index) => (
                 <li
                   key={industry}
-                  className="flex min-w-0 items-center gap-2 rounded-lg border border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-brand-900"
+                  className={`flex min-w-0 items-center gap-2 rounded-lg border border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-brand-900 ${
+                    index === industries.length - 1 ? "lg:col-span-2" : ""
+                  }`}
                 >
-                  <FontAwesomeIcon icon={faChevronRight} className="text-brand-700" {...iconDecorativeProps} />
                   <span className="break-words">{industry}</span>
                 </li>
               ))}
@@ -316,13 +345,21 @@ export function LandingPage() {
                     alt={item.alt}
                     width={960}
                     height={640}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    style={
+                      item.objectPosition
+                        ? { objectPosition: item.objectPosition }
+                        : undefined
+                    }
                     className="h-44 w-full object-cover"
                   />
                   <div className="p-4">
                     <h3 className="font-[var(--font-heading)] text-lg font-semibold text-brand-900">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-700">{item.description}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                      {item.description}
+                    </p>
                   </div>
                 </article>
               ))}
@@ -341,60 +378,45 @@ export function LandingPage() {
         </section>
 
         <section id="quote" className="section-shell">
-          <div className="container-main grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
-            <aside className="rounded-xl border border-slate-300 bg-brand-950 p-6 text-slate-100 shadow-panel">
+          <div className="container-main flex flex-col gap-5">
+            <aside className="flex h-full flex-col rounded-xl border border-slate-300 bg-brand-950 p-6 text-slate-100 shadow-panel">
               <h2 className="font-[var(--font-heading)] text-2xl font-semibold text-white">
                 Запросить коммерческое предложение
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-200">
-                Отправьте заявку, и мы подготовим подбор материалов под ваш объект, сроки поставки и
-                требуемые объемы.
+                Отправьте заявку, и мы подготовим подбор материалов под ваш
+                объект, сроки поставки и требуемые объемы.
               </p>
-              <ul className="mt-5 space-y-3 text-sm text-slate-100">
-                <li className="flex items-start gap-2">
-                  <FontAwesomeIcon icon={faWrench} className="mt-0.5 text-accent-300" {...iconDecorativeProps} />
-                  Подбор материалов под проектные требования
-                </li>
-                <li className="flex items-start gap-2">
-                  <FontAwesomeIcon
-                    icon={faTruckFast}
-                    className="mt-0.5 text-accent-300"
-                    {...iconDecorativeProps}
-                  />
-                  Планирование поставки и контроль логистики
-                </li>
-                <li className="flex items-start gap-2">
-                  <FontAwesomeIcon
-                    icon={faClipboardCheck}
-                    className="mt-0.5 text-accent-300"
-                    {...iconDecorativeProps}
-                  />
-                  Поддержка менеджера и технического специалиста
-                </li>
-              </ul>
             </aside>
-            <QuoteForm />
+            <QuoteForm className="h-full" />
           </div>
         </section>
 
         <section id="contacts" className="section-shell bg-white">
           <div className="container-main">
-            <SectionTitle kicker="Контакты" title="Свяжитесь с нами удобным способом" />
+            <SectionTitle
+              kicker="Контакты"
+              title="Свяжитесь с нами удобным способом"
+            />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <article className="rounded-xl border border-slate-300 bg-white p-5 shadow-panel">
-                <h3 className="font-[var(--font-heading)] text-lg font-semibold text-brand-900">Телефон</h3>
+                <h3 className="font-[var(--font-heading)] text-lg font-semibold text-brand-900">
+                  Телефон
+                </h3>
                 <a
                   href={`tel:${contacts.phone.replace(/\s/g, "")}`}
-                  className="focus-ring mt-2 inline-flex text-base font-semibold text-slate-800 transition-colors hover:text-brand-900"
+                  className="focus-ring mt-2 inline-flex min-h-11 items-center text-base font-semibold text-slate-800 transition-colors hover:text-brand-900"
                 >
                   {contacts.phone}
                 </a>
               </article>
               <article className="rounded-xl border border-slate-300 bg-white p-5 shadow-panel">
-                <h3 className="font-[var(--font-heading)] text-lg font-semibold text-brand-900">Email</h3>
+                <h3 className="font-[var(--font-heading)] text-lg font-semibold text-brand-900">
+                  Email
+                </h3>
                 <a
                   href={`mailto:${contacts.email}`}
-                  className="focus-ring mt-2 inline-flex break-all text-base font-semibold text-slate-800 transition-colors hover:text-brand-900"
+                  className="focus-ring mt-2 inline-flex min-h-11 items-center break-all text-base font-semibold text-slate-800 transition-colors hover:text-brand-900"
                 >
                   {contacts.email}
                 </a>
@@ -403,7 +425,9 @@ export function LandingPage() {
                 <h3 className="font-[var(--font-heading)] text-lg font-semibold text-brand-900">
                   Контактное лицо
                 </h3>
-                <p className="mt-2 text-base font-semibold text-slate-800">{contacts.person}</p>
+                <p className="mt-2 text-base font-semibold text-slate-800">
+                  {contacts.person}
+                </p>
               </article>
             </div>
           </div>
@@ -411,62 +435,38 @@ export function LandingPage() {
       </main>
 
       <footer className="border-t border-slate-300 bg-brand-950 py-10 text-slate-200">
-        <div className="container-main grid gap-8 lg:grid-cols-[1.3fr_1fr_1fr]">
-          <div>
-            <p className="font-[var(--font-heading)] text-xl font-semibold text-white">{companyName}</p>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">
-              Комплексные поставки материалов для реставрации и капитального ремонта с техническим
-              сопровождением и надежной логистикой.
-            </p>
-          </div>
-
-          <nav aria-label="Навигация в подвале">
-            <p className="font-[var(--font-heading)] text-lg font-semibold text-white">Разделы</p>
-            <ul className="mt-3 space-y-2">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="focus-ring text-sm text-slate-300 transition-colors hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <p className="font-[var(--font-heading)] text-lg font-semibold text-white">Связь</p>
-            <ul className="mt-3 space-y-2 text-sm text-slate-300">
-              <li>
-                Телефон:{" "}
-                <a
-                  href={`tel:${contacts.phone.replace(/\s/g, "")}`}
-                  className="focus-ring transition-colors hover:text-white"
-                >
-                  {contacts.phone}
-                </a>
-              </li>
-              <li>
-                Email:{" "}
-                <a
-                  href={`mailto:${contacts.email}`}
-                  className="focus-ring break-all transition-colors hover:text-white"
-                >
-                  {contacts.email}
-                </a>
-              </li>
-              <li>Контактное лицо: {contacts.person}</li>
-            </ul>
-            <Link
-              href="#quote"
-              className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-500 active:bg-accent-700"
-            >
-              Получить подбор материалов
-              <FontAwesomeIcon icon={faArrowRight} {...iconDecorativeProps} />
-            </Link>
-          </div>
+        <div className="container-main">
+          <p className="font-[var(--font-heading)] text-lg font-semibold text-white">
+            Связь
+          </p>
+          <ul className="text-sm text-slate-300">
+            <li>
+              Телефон:{" "}
+              <a
+                href={`tel:${contacts.phone.replace(/\s/g, "")}`}
+                className="focus-ring inline-flex items-center transition-colors hover:text-white"
+              >
+                {contacts.phone}
+              </a>
+            </li>
+            <li>
+              Email:{" "}
+              <a
+                href={`mailto:${contacts.email}`}
+                className="focus-ring inline-flex items-center break-all transition-colors hover:text-white"
+              >
+                {contacts.email}
+              </a>
+            </li>
+            <li>Контактное лицо: {contacts.person}</li>
+          </ul>
+          <Link
+            href="#quote"
+            className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-500 active:bg-accent-700"
+          >
+            Получить подбор материалов
+            <FontAwesomeIcon icon={faArrowRight} {...iconDecorativeProps} />
+          </Link>
         </div>
       </footer>
     </div>

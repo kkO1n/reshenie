@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
 type QuoteFields = {
   name: string;
@@ -12,6 +12,9 @@ type QuoteFields = {
 };
 
 type QuoteErrors = Partial<Record<keyof QuoteFields, string>>;
+type QuoteFormProps = {
+  className?: string;
+};
 
 const phonePattern = /^\+?[0-9\s\-()]{10,20}$/;
 
@@ -56,29 +59,14 @@ function validate(formData: FormData): QuoteErrors {
   return nextErrors;
 }
 
-export function QuoteForm() {
+export function QuoteForm({ className }: QuoteFormProps) {
   const [errors, setErrors] = useState<QuoteErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState(
     "Заполните форму, и менеджер свяжется с вами с подбором и коммерческим предложением."
   );
-  const [isDirty, setIsDirty] = useState(false);
 
   const hasErrors = useMemo(() => Object.keys(errors).length > 0, [errors]);
-
-  useEffect(() => {
-    if (!isDirty) {
-      return undefined;
-    }
-
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      event.preventDefault();
-      event.returnValue = "";
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [isDirty]);
 
   function focusFirstError(nextErrors: QuoteErrors) {
     const firstField = fieldOrder.find((field) => nextErrors[field]);
@@ -119,7 +107,6 @@ export function QuoteForm() {
       setErrors({});
       setStatus("success");
       setStatusMessage("Заявка отправлена. Алексей свяжется с вами в рабочее время.");
-      setIsDirty(false);
     } catch {
       setStatus("error");
       setStatusMessage("Не удалось отправить заявку. Повторите попытку или позвоните нам.");
@@ -130,12 +117,7 @@ export function QuoteForm() {
     <form
       noValidate
       onSubmit={handleSubmit}
-      onChange={() => {
-        if (!isDirty) {
-          setIsDirty(true);
-        }
-      }}
-      className="grid gap-4 rounded-xl border border-slate-300 bg-white p-5 shadow-panel sm:grid-cols-2 sm:p-6"
+      className={`grid gap-4 rounded-xl border border-slate-300 bg-white p-5 shadow-panel sm:grid-cols-2 sm:p-6 ${className ?? ""}`}
       aria-describedby="quote-form-status"
     >
       <div className="sm:col-span-1">
@@ -146,11 +128,12 @@ export function QuoteForm() {
           id="name"
           name="name"
           type="text"
+          required
           autoComplete="name"
           placeholder="Например, Иван Петров…"
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? "name-error" : undefined}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
+          className="focus-ring min-h-11 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
         />
         {errors.name ? (
           <p id="name-error" className="mt-1 text-xs text-accent-800">
@@ -167,12 +150,13 @@ export function QuoteForm() {
           id="phone"
           name="phone"
           type="tel"
+          required
           autoComplete="tel"
           inputMode="tel"
           placeholder="Например, +7 911 765-77-77…"
           aria-invalid={Boolean(errors.phone)}
           aria-describedby={errors.phone ? "phone-error" : undefined}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
+          className="focus-ring min-h-11 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
         />
         {errors.phone ? (
           <p id="phone-error" className="mt-1 text-xs text-accent-800">
@@ -189,13 +173,14 @@ export function QuoteForm() {
           id="email"
           name="email"
           type="email"
+          required
           autoComplete="email"
           inputMode="email"
           spellCheck={false}
           placeholder="Например, info@company.ru…"
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "email-error" : undefined}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
+          className="focus-ring min-h-11 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
         />
         {errors.email ? (
           <p id="email-error" className="mt-1 text-xs text-accent-800">
@@ -212,11 +197,12 @@ export function QuoteForm() {
           id="company"
           name="company"
           type="text"
+          required
           autoComplete="organization"
           placeholder="Например, ООО «СтройПроект»…"
           aria-invalid={Boolean(errors.company)}
           aria-describedby={errors.company ? "company-error" : undefined}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
+          className="focus-ring min-h-11 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
         />
         {errors.company ? (
           <p id="company-error" className="mt-1 text-xs text-accent-800">
@@ -233,11 +219,12 @@ export function QuoteForm() {
           id="supply"
           name="supply"
           type="text"
+          required
           autoComplete="off"
           placeholder="Например, инъекционные составы, гидроизоляция, ЛКМ…"
           aria-invalid={Boolean(errors.supply)}
           aria-describedby={errors.supply ? "supply-error" : undefined}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
+          className="focus-ring min-h-11 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
         />
         {errors.supply ? (
           <p id="supply-error" className="mt-1 text-xs text-accent-800">
@@ -254,10 +241,11 @@ export function QuoteForm() {
           id="comment"
           name="comment"
           rows={4}
+          required
           placeholder="Например, объект культурного наследия, старт работ в мае, важна поставка поэтапно…"
           aria-invalid={Boolean(errors.comment)}
           aria-describedby={errors.comment ? "comment-error" : undefined}
-          className="focus-ring w-full resize-y rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
+          className="focus-ring min-h-28 w-full resize-y rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-500 hover:border-slate-400 focus-visible:border-brand-600"
         />
         {errors.comment ? (
           <p id="comment-error" className="mt-1 text-xs text-accent-800">
@@ -270,7 +258,7 @@ export function QuoteForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="focus-ring inline-flex items-center justify-center rounded-lg bg-brand-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900 disabled:cursor-not-allowed disabled:bg-brand-500"
+          className="focus-ring inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-800 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-900 disabled:cursor-not-allowed disabled:bg-brand-500"
         >
           {status === "submitting" ? "Отправка…" : "Запросить коммерческое предложение"}
         </button>

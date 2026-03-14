@@ -151,8 +151,8 @@ export function LandingPage() {
 
             <figure className="overflow-hidden rounded-xl border border-slate-300 bg-slate-100 shadow-panel">
               <Image
-                src="/images/hero-site.svg"
-                alt="Поставка материалов на объект капитального ремонта"
+                src="/images/hero-construction-overhead.png"
+                alt="Вид сверху на объект капитального ремонта с рабочими и арматурным каркасом"
                 width={960}
                 height={720}
                 priority

@@ -169,37 +169,37 @@ export const imageDirections: ImageDirection[] = [
   {
     title: "Реставрационная площадка",
     description: "Общие планы объектов капитального ремонта и реставрации.",
-    src: "/images/directions/restoration-site.svg",
-    alt: "Реставрационная площадка с лесами и строительной техникой"
+    src: "/images/directions/restoration-site-excavator.png",
+    alt: "Строительная техника на реставрационной площадке под плотным облачным небом"
   },
   {
     title: "Фасадная реставрация",
     description: "Работы по восстановлению фасадов исторических зданий.",
-    src: "/images/directions/facade.svg",
-    alt: "Фасад исторического здания в процессе реставрации"
+    src: "/images/directions/facade-heritage-building.png",
+    alt: "Фасад исторического здания в городской среде, пример объекта реставрации"
   },
   {
     title: "Склад и логистика",
     description: "Отгрузка материалов, контроль комплектности и маршрутов.",
-    src: "/images/directions/warehouse.svg",
-    alt: "Склад с паллетами строительных материалов"
+    src: "/images/directions/logistics-base-exterior.png",
+    alt: "База снабжения и логистики с внешней зоной доступа и подъезда"
   },
   {
     title: "Инженерная проработка",
     description: "Специалисты сверяют планы, узлы и спецификации.",
-    src: "/images/directions/engineers.svg",
-    alt: "Инженеры обсуждают чертежи и спецификацию материалов"
+    src: "/images/directions/engineering-facility-interior.png",
+    alt: "Внутреннее пространство технического учреждения для инженерного согласования работ"
   },
   {
     title: "Фактура материалов",
     description: "Крупные планы смесей, гидроизоляции и защитных составов.",
-    src: "/images/directions/materials.svg",
-    alt: "Крупный план промышленных строительных материалов"
+    src: "/images/directions/materials-wood-closeup.png",
+    alt: "Крупный план обработки пиломатериалов на строительной площадке"
   },
   {
     title: "Инфраструктурные объекты",
     description: "Метро, городская инфраструктура и объекты повышенной ответственности.",
-    src: "/images/directions/infrastructure.svg",
-    alt: "Инфраструктурный объект с акцентом на капитальный ремонт"
+    src: "/images/directions/infrastructure-metro-tunnel.png",
+    alt: "Тоннель метрополитена как пример инфраструктурного объекта капитального ремонта"
   }
 ];
